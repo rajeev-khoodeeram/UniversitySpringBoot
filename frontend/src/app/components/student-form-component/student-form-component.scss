@@ -1,68 +1,69 @@
 form {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-
-  label {
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-    display: block;
-    color: #333;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #f9f9f9;
     border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 
-    &:focus {
-      outline: none;
-      border-color: #007bff;
-      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    label {
+        width: 50px;       // fixed width for alignment
+        margin-right: 10px; // spacing between label and input
+        text-align: right;  // aligns label text to the right
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #333;
     }
 
-    &.ng-invalid.ng-touched {
-      border-color: #dc3545;
-      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
-    }
-  }
 
-  button {
-    background: #007bff;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s ease;
+    input,
+    select,
+    textarea {
+        flex: 1;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
 
-    &:hover {
-      background: #0056b3;
+        &:focus {
+            border-color: #1976d2;
+            outline: none;
+        }
     }
 
-    &:disabled {
-      background: #ccc;
-      cursor: not-allowed;
-    }
-  }
+    button[type="submit"] {
+        background: #1976d2;
+        color: #fff;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
 
-  .error-message {
+        &:hover {
+            background: #1565c0;
+        }
+    }   
+}
+
+.error-message {
+    color: red;
     font-size: 0.875rem;
-    color: #dc3545;
-    margin-top: -0.5rem;
-  }
+    margin-top: 0.25rem;
+}
+
+.success-message {
+    color: green;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    align-content: center;
 }

@@ -12,8 +12,6 @@ export const routes: Routes = [
         path: "",
         component: App
     },
-    { path: "students/add", component: StudentFormComponent },
-    { path: "students/edit/:id", component: StudentFormComponent },
-    { path: "students/view/:id", component: StudentFormComponent }
-
+    {path: "students/add", component: StudentFormComponent},
+    {path: "students/edit/:studentId", component: StudentFormComponent}
 ];
