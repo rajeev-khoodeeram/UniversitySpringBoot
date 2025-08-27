@@ -1,31 +1,42 @@
 <p>student-form-component works!</p>
-
-
-
 <div>
-  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-
-
-
+    <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
     <div>
-      <label for="studentFirstName">First Name:</label>
-      <input type="text" required formControlName="studentFirstName">
+        <label for="firstName">First Name:</label>
+        <input id="firstName" formControlName="studentFirstName" />
     </div>
     <div>
-      <label for="studentLastName">Last Name:</label>
-      <input type="text" required formControlName="studentLastName">
+        <label for="lastName">Last Name:</label>
+        <input id="lastName" formControlName="studentLastName" />
     </div>
     <div>
-      <label for="studentEmail">Email:</label>
-      <input type="text" required formControlName="studentEmail">
+        <label for="email">Email:</label>
+        <input id="email" formControlName="studentEmail" />
     </div>
-    <button type="submit" [disabled]="!studentForm.valid">Submit</button>
-  </form>
+    <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input id="phoneNumber" formControlName="studentPhoneNumber" />
+    </div>
+    <div>
+        <label for="address">Address:</label>
+        <input id="address" formControlName="studentAddress" />
+    </div>
+    <div>
+        <label for="gender">Gender:</label>
+        <select id="gender" formControlName="studentGender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+    <div>
+        <label for="dateOfBirth">Date of Birth:</label>
+        <input id="dateOfBirth" type="date" formControlName="studentDateOfBirth" />
+    </div>
+    <button type="submit">Submit</button>
+</form>
 </div>
 
-  <div *ngIf="successMessage.length > 10" class="success-message">
-    {{ successMessage }}
-  </div>
-  <div *ngIf="errorMessage.length > 10" class="error-message">
-    {{ errorMessage }}
-  </div>
+<div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
