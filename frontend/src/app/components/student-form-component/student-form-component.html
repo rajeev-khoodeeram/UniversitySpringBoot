@@ -1,0 +1,31 @@
+<p>student-form-component works!</p>
+
+
+
+<div>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+
+
+
+    <div>
+      <label for="studentFirstName">First Name:</label>
+      <input type="text" required formControlName="studentFirstName">
+    </div>
+    <div>
+      <label for="studentLastName">Last Name:</label>
+      <input type="text" required formControlName="studentLastName">
+    </div>
+    <div>
+      <label for="studentEmail">Email:</label>
+      <input type="text" required formControlName="studentEmail">
+    </div>
+    <button type="submit" [disabled]="!studentForm.valid">Submit</button>
+  </form>
+</div>
+
+  <div *ngIf="successMessage.length > 10" class="success-message">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage.length > 10" class="error-message">
+    {{ errorMessage }}
+  </div>
