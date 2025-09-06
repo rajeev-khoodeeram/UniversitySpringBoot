@@ -79,6 +79,7 @@ public class StudentController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable int id) {
         studentService.deleteStudent(id);
+        // this can be updated so that frontend can handle the response better; update table view for example
         return ResponseEntity.noContent().build();
     }
 
