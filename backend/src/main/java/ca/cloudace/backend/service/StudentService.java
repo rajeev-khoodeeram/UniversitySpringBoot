@@ -29,7 +29,7 @@ public class StudentService {
 
    
 
-    
+        
     public void saveStudent(Student student) {
         studentRepository.save(student);
     }
