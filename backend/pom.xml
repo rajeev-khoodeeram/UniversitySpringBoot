@@ -70,6 +70,14 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+
+        <!-- used for creating DTOs-->
+        <dependency>
+         <groupId>org.projectlombok</groupId>
+         <artifactId>lombok</artifactId>
+         <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>

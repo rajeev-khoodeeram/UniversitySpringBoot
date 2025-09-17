@@ -16,7 +16,7 @@ export class StudentListComponent implements OnInit {
   students: Student[] = [];
   router: any;
 
-  constructor(private studentService: StudentService, private cd: ChangeDetectorRef) {}
+  constructor(private studentService: StudentService) {}
 
   ngOnInit() {
     this.fetchStudents();
@@ -33,7 +33,7 @@ export class StudentListComponent implements OnInit {
         console.error('Error fetching students:', error);
       }
     });
-    }
+  }
 
     /**
      * Deletes a student by ID.
