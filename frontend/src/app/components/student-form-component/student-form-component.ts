@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { StudentService } from '../../services/student-service';
-import { ActivatedRoute, RouteConfigLoadEnd } from '@angular/router';
-import { RouterModule } from '@angular/router';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-student-form-component',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule, FormsModule, RouterModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './student-form-component.html',
   styleUrls: ['./student-form-component.scss']
 })
@@ -21,8 +19,7 @@ export class StudentFormComponent {
   studentId!: number;
 
   constructor(private fb: FormBuilder, private studentService: StudentService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() : void {
