@@ -1,6 +1,5 @@
 package ca.cloudace.backend.model;
 
-
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -11,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
 
 @Entity
 @Table(name = "moduleenrolment")
@@ -75,12 +73,15 @@ public class ModuleEnrolment {
     public Date getEnrolmentDate() {
         return enrolmentDate;
     }
+
     public void setEnrolmentDate(Date enrolmentDate) {
         this.enrolmentDate = enrolmentDate;
     }
+
     public String getGrade() {
         return grade;
     }
+
     public void setGrade(String grade) {
         this.grade = grade;
     }
@@ -88,6 +89,7 @@ public class ModuleEnrolment {
     public String getStatus() {
         return status;
     }
+
     public void setStatus(String status) {
         this.status = status;
     }

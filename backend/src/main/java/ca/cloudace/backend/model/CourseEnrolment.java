@@ -11,7 +11,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "courseenrolment")
 public class CourseEnrolment {
@@ -38,13 +37,13 @@ public class CourseEnrolment {
     @Column(name = "courseEnrolGraduation", nullable = true)
     private String courseEnrolGraduation;
 
-
     // Constructors, getters, and setters
 
     public CourseEnrolment() {
     }
 
-    public CourseEnrolment(Student student, Course course, Date courseEnrolDate, String courseEnrolStatus, String courseEnrolGraduation) {
+    public CourseEnrolment(Student student, Course course, Date courseEnrolDate, String courseEnrolStatus,
+            String courseEnrolGraduation) {
         this.student = student;
         this.course = course;
         this.courseEnrolDate = courseEnrolDate;
@@ -72,7 +71,6 @@ public class CourseEnrolment {
         this.course = course;
     }
 
-   
     public Date getCourseEnrolDate() {
         return courseEnrolDate;
     }
@@ -96,7 +94,5 @@ public class CourseEnrolment {
     public void setCourseEnrolGraduation(String courseEnrolGraduation) {
         this.courseEnrolGraduation = courseEnrolGraduation;
     }
-       
-
 
 }
