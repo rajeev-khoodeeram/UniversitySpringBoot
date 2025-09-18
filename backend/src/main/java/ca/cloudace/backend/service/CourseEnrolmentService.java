@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import ca.cloudace.backend.model.Course;
 import ca.cloudace.backend.model.CourseEnrolment;
 import ca.cloudace.backend.repository.CourseEnrolmentRepository;
-
 
 @Service
 public class CourseEnrolmentService {
@@ -45,6 +45,10 @@ public class CourseEnrolmentService {
                     return courseEnrolmentRepository.save(courseEnrolment);
                 })
                 .orElse(null);
+    }
+
+    public List<CourseEnrolment> getCourseEnrolmentsByCourse(Course course) {
+        return courseEnrolmentRepository.findByCourse(course);
     }
 
 }

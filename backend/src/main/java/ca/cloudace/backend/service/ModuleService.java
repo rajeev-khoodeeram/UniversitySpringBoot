@@ -29,7 +29,7 @@ public class ModuleService {
         return moduleRepository.save(module);
     }
 
-    public void deleteModule(Long id) {
+    public void deleteModuleById(Long id) {
         moduleRepository.deleteById(id);
     }
 
@@ -41,13 +41,10 @@ public class ModuleService {
             module.setModuleSemester(updatedModule.getModuleSemester());
             module.setCourse(updatedModule.getCourse());
             module.setLecturer(updatedModule.getLecturer());
-            
 
             // Update other fields as necessary
             return moduleRepository.save(module);
         }).orElse(null);
     }
-
-
 
 }
