@@ -1,0 +1,5 @@
+<div *ngFor="let faculty of faculties" class="faculty-card">
+  <h3>{{ faculty.facultyName }}</h3>
+  <p>{{ faculty.facultyCode }}</p>
+  <a [routerLink]="['/faculty', faculty.facultyId]">View Details</a>
+</div>
