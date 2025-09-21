@@ -1,0 +1,53 @@
+-- ==========================
+-- Coordinator Assignments
+-- ==========================
+
+-- Assuming course IDs are auto-increment starting from 1 for department 84–95 courses
+-- For demonstration, we'll assign the first lecturer of each department as coordinator
+
+INSERT INTO coordinator (coordinatorName, coordinatorEmail, courseId, departmentId) VALUES
+('Emily Adams',   'emily.adams84@univ.edu', 2, 84),
+('James Baker',   'james.baker84@univ.edu', 2, 84),
+('Olivia Clark',  'olivia.clark84@univ.edu', 5, 84),
+('Paul Harris',   'paul.harris84@univ.edu', 5, 84),
+('Laura Smith',   'laura.smith84@univ.edu', 5, 84),
+('Liam Davis',    'liam.davis85@univ.edu', 6, 85),
+('Sophia Evans',  'sophia.evans85@univ.edu', 7, 85),
+('Noah Garcia',   'noah.garcia85@univ.edu', 8, 85),
+('Isabella Lee',  'isabella.lee85@univ.edu', 9, 85),
+('Mia Johnson',    'mia.johnson86@univ.edu', 10, 86),
+('William King',   'william.king86@univ.edu', 11, 86),
+('Ava Martin',     'ava.martin86@univ.edu', 12, 86),
+('Benjamin Lee',   'benjamin.lee86@univ.edu', 13, 86),
+('Charlotte Green','charlotte.green86@univ.edu', 14, 86),
+('Elijah Nelson','elijah.nelson87@univ.edu', 15, 87),
+('Isabella Martinez','isabella.martinez87@univ.edu', 16, 87),
+('Lucas White','lucas.white87@univ.edu', 17, 87),
+('Sophia Walker','sophia.walker87@univ.edu', 18, 87),
+('Charlotte Owens','charlotte.owens88@univ.edu', 19, 88),
+('Lucas Parker',  'lucas.parker88@univ.edu', 20, 88),
+('Amelia Quinn',  'amelia.quinn88@univ.edu', 21, 88),
+('Ethan Lewis',   'ethan.lewis88@univ.edu', 22, 88),
+('Henry Reed',    'henry.reed89@univ.edu', 23, 89),
+('Evelyn Scott',  'evelyn.scott89@univ.edu', 24, 89),
+('Alexander Turner','alexander.turner89@univ.edu', 25, 89),
+('Mia Thompson',  'mia.thompson89@univ.edu', 26, 89),
+('Jack Robinson','jack.robinson89@univ.edu', 27, 89),
+('Harper Upton',  'harper.upton90@univ.edu', 28, 90),
+('Jack Vance',    'jack.vance90@univ.edu', 29, 90),
+('Ella White',    'ella.white90@univ.edu', 30, 90),
+('Lucas Miller',  'lucas.miller90@univ.edu', 31, 90),
+('Daniel Xavier', 'daniel.xavier91@univ.edu', 32, 91),
+('Abigail Young','abigail.young91@univ.edu', 33, 91),
+('Matthew Zimmer','matthew.zimmer91@univ.edu', 34, 91),
+('Victoria Adams','victoria.adams91@univ.edu', 35, 91),
+('Scarlett Anderson','scarlett.anderson92@univ.edu', 36, 92),
+('David Bennett','david.bennett92@univ.edu', 37, 92),
+('Lily Carter','lily.carter92@univ.edu', 38, 92),
+('Sophia Hall','sophia.hall92@univ.edu', 39, 92),
+('Ethan Scott','ethan.scott92@univ.edu', 40, 92),
+('Joseph Diaz','joseph.diaz93@univ.edu', 41, 93),
+('Grace Edwards','grace.edwards93@univ.edu', 42, 93),
+('Samuel Foster','samuel.foster93@univ.edu', 43, 93),
+('Olivia Hughes','olivia.hughes93@univ.edu', 44, 93),
+('Lucas Scott','lucas.scott95@univ.edu', 53, 95);

@@ -1,4 +1,5 @@
 package ca.cloudace.backend.model;
+
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -17,102 +18,115 @@ import jakarta.persistence.Table;
 @Table(name = "lecturer")
 public class Lecturer {
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "lecturerId")
-private int lecturerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "lecturerId")
+    private int lecturerId;
 
-@Column(name = "lecturerFirstName", nullable = false)
-private String lecturerFirstName;
+    @Column(name = "lecturerFirstName", nullable = false)
+    private String lecturerFirstName;
 
-@Column(name = "lecturerLastName", nullable = false)
-private String lecturerLastName;
+    @Column(name = "lecturerLastName", nullable = false)
+    private String lecturerLastName;
 
-@Column(name = "lecturerEmail", nullable = false)
-private String lecturerEmail;
+    @Column(name = "lecturerEmail", nullable = false)
+    private String lecturerEmail;
 
-@Column(name = "lecturerHireDate", nullable = false)
-private Date lecturerHireDate;
+    @Column(name = "lecturerHireDate", nullable = false)
+    private Date lecturerHireDate;
 
-@Column(name = "lecturerTitle", nullable = false)
-private String lecturerTitle;
+    @Column(name = "lecturerTitle", nullable = false)
+    private String lecturerTitle;
 
-//many lecturers belong to one department
-@ManyToOne
-@JoinColumn(name = "departmentId", nullable = false)
-@JsonBackReference
-private Department department;
+    // many lecturers belong to one department
+    @ManyToOne
+    @JoinColumn(name = "departmentId", nullable = false)
+    @JsonBackReference
+    private Department department;
 
-// headship : one lecturer can head only one department
-@OneToOne(mappedBy = "headOfDepartment")
-@JsonBackReference
-private Department headedDepartment;
+    // headship : one lecturer can head only one department
+    @OneToOne(mappedBy = "headOfDepartment")
+    @JsonBackReference
+    private Department headedDepartment;
 
-// Constructors, getters, and setters
-public Lecturer() {
-}   
+    @OneToOne(mappedBy = "facultyDean")
+    @JsonBackReference
+    private Faculty facultyDean;
 
-public Lecturer(String lecturerFirstName, String lecturerLastName, String lecturerEmail, Date lecturerHireDate, String lecturerTitle, Department department) {
-    this.lecturerFirstName = lecturerFirstName;
-    this.lecturerLastName = lecturerLastName;
-    this.lecturerEmail = lecturerEmail;
-    this.lecturerHireDate = lecturerHireDate;
-    this.lecturerTitle = lecturerTitle;
-    this.department = department;
-}
+    // Constructors, getters, and setters
+    public Lecturer() {
+    }
 
+    public Lecturer(String lecturerFirstName, String lecturerLastName, String lecturerEmail, Date lecturerHireDate,
+            String lecturerTitle, Department department) {
+        this.lecturerFirstName = lecturerFirstName;
+        this.lecturerLastName = lecturerLastName;
+        this.lecturerEmail = lecturerEmail;
+        this.lecturerHireDate = lecturerHireDate;
+        this.lecturerTitle = lecturerTitle;
+        this.department = department;
+    }
 
-public int getLecturerId() {
-    return lecturerId;              
-}
+    public int getLecturerId() {
+        return lecturerId;
+    }
 
-public void setLecturerId(int lecturerId) {
-    this.lecturerId = lecturerId;
-}
- 
-public String getLecturerFirstName() {
-    return lecturerFirstName;
-}   
+    public void setLecturerId(int lecturerId) {
+        this.lecturerId = lecturerId;
+    }
 
+    public String getLecturerFirstName() {
+        return lecturerFirstName;
+    }
 
-public void setLecturerFirstName(String lecturerFirstName) {
-    this.lecturerFirstName = lecturerFirstName;
-}
+    public void setLecturerFirstName(String lecturerFirstName) {
+        this.lecturerFirstName = lecturerFirstName;
+    }
 
-public String getLecturerLastName() {
-    return lecturerLastName;
-}
-public void setLecturerLastName(String lecturerLastName) {
-    this.lecturerLastName = lecturerLastName;
-}
-   
+    public String getLecturerLastName() {
+        return lecturerLastName;
+    }
+
+    public void setLecturerLastName(String lecturerLastName) {
+        this.lecturerLastName = lecturerLastName;
+    }
+
     public Date getLecturerHireDate() {
         return lecturerHireDate;
     }
+
     public void setLecturerHireDate(Date lecturerHireDate) {
         this.lecturerHireDate = lecturerHireDate;
     }
+
     public String getLecturerEmail() {
         return lecturerEmail;
     }
+
     public void setLecturerEmail(String lecturerEmail) {
         this.lecturerEmail = lecturerEmail;
     }
+
     public String getLecturerTitle() {
         return lecturerTitle;
     }
+
     public void setLecturerTitle(String lecturerTitle) {
         this.lecturerTitle = lecturerTitle;
     }
+
     public Department getDepartment() {
         return department;
     }
+
     public void setDepartment(Department department) {
         this.department = department;
     }
+
     public Department getHeadedDepartment() {
         return headedDepartment;
     }
+
     @Override
     public String toString() {
         return "Lecturer [lecturerId=" + lecturerId + ", lecturerFirstName="
@@ -123,4 +137,3 @@ public void setLecturerLastName(String lecturerLastName) {
     }
 
 }
-

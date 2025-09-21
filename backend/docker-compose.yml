@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_university
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "Rk2025.;"
+      MYSQL_DATABASE: university
+      MYSQL_USER: rajeev
+      MYSQL_PASSWORD: "Rk2025.;"
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db_init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: university_v2Endpoints
+    restart: unless-stopped
+    ports:
+      - "8082:8080"
+    environment:
+      #SPRING_PROFILES_ACTIVE: local
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: "Rk2025.;"
+      DB_NAME: university
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:
