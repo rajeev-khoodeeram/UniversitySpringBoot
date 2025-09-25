@@ -1,9 +1,77 @@
+.faculty-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* left card 1fr, right description 2fr */
+  gap: 2rem;
+  padding: 1.5rem 0;
+  align-items: stretch; /* same height */
+}
+
+.faculty-list {
+  display: flex;
+  flex-direction: column;
+}
+
 .faculty-card {
-  border: 1px solid #ccc;
-  padding: 16px;
-  margin-bottom: 16px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   width: 300px;
+}
+
+.faculty-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+.faculty-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+  color: #1e293b;
+}
+
+.faculty-card p {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 0.8rem;
+}
+
+.faculty-card a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.faculty-description {
+  background: #c6e4bf;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+    width: 700px;
+}
+
+.faculty-description h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.faculty-description p {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .faculty-container {
+    grid-template-columns: 1fr; /* stack vertically */
+  }
+
+  .faculty-description {
+    margin-top: 1.5rem;
+  }
 }

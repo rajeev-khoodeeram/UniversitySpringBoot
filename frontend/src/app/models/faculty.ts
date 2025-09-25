@@ -6,4 +6,6 @@ export class Faculty {
     facultyCode!: string;
     facultyPhone!: string;
     facultyDean!: Lecturer;
+    facultyEmail!: string;
+    facultyDescription!: string;
 }

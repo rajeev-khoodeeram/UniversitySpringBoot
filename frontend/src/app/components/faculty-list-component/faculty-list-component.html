@@ -1,5 +1,15 @@
-<div *ngFor="let faculty of faculties" class="faculty-card">
-  <h3>{{ faculty.facultyName }}</h3>
-  <p>{{ faculty.facultyCode }}</p>
-  <a [routerLink]="['/faculty', faculty.facultyId]">View Details</a>
+<div *ngFor="let faculty of faculties" class="faculty-container">
+  <!-- Left: single faculty card -->
+  <div class="faculty-list">
+    <div class="faculty-card">
+      <h3>{{ faculty.facultyName }}</h3>
+      <p class="faculty-code">{{ faculty.facultyCode }}</p>
+      <a [routerLink]="['/faculty', faculty.facultyId]">View Details</a>
+    </div>
+  </div>
+
+  <!-- Right: description for the same faculty -->
+  <div class="faculty-description">
+    <p>{{ faculty.facultyDescription }}</p>
+  </div>
 </div>

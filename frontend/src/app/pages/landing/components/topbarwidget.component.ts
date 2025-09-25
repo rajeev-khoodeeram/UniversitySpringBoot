@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
 import {AppFloatingConfigurator} from "@/layout/component/app.floatingconfigurator";
+import { AuthService } from '@/services/auth.service';
 
 @Component({
     selector: 'topbar-widget',
@@ -46,8 +47,8 @@ import {AppFloatingConfigurator} from "@/layout/component/app.floatingconfigurat
                     </a>
                 </li>
                 <li>
-                    <a (click)="router.navigate(['/landing'], { fragment: 'highlights' })" pRipple class="px-0 py-4 text-surface-900 dark:text-surface-0 font-medium text-xl">
-                        <span>Highlights</span>
+                    <a (click)="router.navigate(['/dash'], { fragment: '' })" pRipple class="px-0 py-4 text-surface-900 dark:text-surface-0 font-medium text-xl">
+                        <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
@@ -59,10 +60,20 @@ import {AppFloatingConfigurator} from "@/layout/component/app.floatingconfigurat
             <div class="flex border-t lg:border-t-0 border-surface py-4 lg:py-0 mt-4 lg:mt-0 gap-2">
                 <button pButton pRipple label="Login" routerLink="/auth/login" [rounded]="true" [text]="true"></button>
                 <button pButton pRipple label="Register" routerLink="/auth/login" [rounded]="true"></button>
+                <button label="Logout" pButton pRipple  [rounded]="true" (click)="logout()" class="ml-2"></button>
                 <app-floating-configurator [float]="false"/>
             </div>
         </div> `
 })
 export class TopbarWidget {
-    constructor(public router: Router) {}
+    constructor(public router: Router, private authService: AuthService) {}
+
+    logout() {
+        // Implement logout functionality here
+        
+        this.authService.logout();
+        this.router.navigate(['/auth/login']);
+        console.log('Logout clicked');
+    }
+
 }
