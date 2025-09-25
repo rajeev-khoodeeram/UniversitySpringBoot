@@ -5,15 +5,18 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import ca.cloudace.backend.model.Module;
+import ca.cloudace.backend.repository.CourseRepository;
 import ca.cloudace.backend.repository.ModuleRepository;
 
 @Service
 public class ModuleService {
 
     private final ModuleRepository moduleRepository;
+    private final CourseRepository courseRepository;
 
-    public ModuleService(ModuleRepository moduleRepository) {
+    public ModuleService(ModuleRepository moduleRepository, CourseRepository courseRepository) {
         this.moduleRepository = moduleRepository;
+        this.courseRepository = courseRepository;
     }
 
     // Add service methods here
@@ -45,6 +48,19 @@ public class ModuleService {
             // Update other fields as necessary
             return moduleRepository.save(module);
         }).orElse(null);
+    }
+
+    /**
+     * Find modules by course ID
+     * Called by CourseController
+     * 
+     * @param courseId
+     * @return
+     */
+    public List<Module> findModulesByCourseId(Long courseId) {
+        List<Module> modules = moduleRepository.findByCourse(courseRepository.findById(courseId).orElse(null));
+        System.out.println("Modules found for course ID " + courseId + ": " + modules.size());
+        return modules;
     }
 
 }

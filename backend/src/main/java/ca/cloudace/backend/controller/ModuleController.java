@@ -3,6 +3,7 @@ package ca.cloudace.backend.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import ca.cloudace.backend.service.ModuleService;
 
 @RestController
 @RequestMapping("/api/modules")
+@CrossOrigin(origins = "http://localhost:4200") // Adjust the origin as needed
 public class ModuleController {
 
     private final ModuleService moduleService;
@@ -94,4 +96,16 @@ public class ModuleController {
     public Module updateModule(@PathVariable Long id, @RequestBody Module module) {
         return moduleService.updateModule(id, module);
     }
+
+    /**
+     * Get modules by course id - used in frontend to filter modules by course
+     * 
+     * @param courseId
+     * @return
+     */
+    @GetMapping("/course/{courseId}")
+    public List<Module> getModulesByCourseId(@PathVariable Long courseId) {
+        return moduleService.findModulesByCourseId(courseId);
+    }
+
 }

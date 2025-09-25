@@ -33,14 +33,19 @@ public class Faculty {
     @JoinColumn(name = "facultyDean", unique = true)
     private Lecturer facultyDean;
 
+    @Column(name = "facultyDescription", nullable = true, columnDefinition = "LONGTEXT")
+    private String facultyDescription;
+
     public Faculty() {
     }
 
-    public Faculty(String facultyName, String facultyCode, String facultyPhone, String facultyEmail) {
+    public Faculty(String facultyName, String facultyCode, String facultyPhone, String facultyEmail,
+            String facultyDescription) {
         this.facultyName = facultyName;
         this.facultyCode = facultyCode;
         this.facultyPhone = facultyPhone;
         this.facultyEmail = facultyEmail;
+        this.facultyDescription = facultyDescription;
 
     }
 
@@ -92,4 +97,11 @@ public class Faculty {
         this.facultyDean = facultyDean;
     }
 
+    public String getFacultyDescription() {
+        return facultyDescription;
+    }
+
+    public void setFacultyDescription(String facultyDescription) {
+        this.facultyDescription = facultyDescription;
+    }
 }

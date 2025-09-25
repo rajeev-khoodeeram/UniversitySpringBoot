@@ -10,4 +10,7 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
 
     Department findByDepartmentName(String departmentName);
 
+    // Custom query method to find departments by faculty ID
+    java.util.List<Department> findByFacultyFacultyId(Long facultyId);
+
 }

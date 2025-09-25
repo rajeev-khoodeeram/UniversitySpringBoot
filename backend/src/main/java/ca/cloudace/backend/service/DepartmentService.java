@@ -51,4 +51,15 @@ public class DepartmentService {
                 .orElse(null);
     }
 
+    /**
+     * Custom method to fetch departments by faculty ID
+     * Get departments by faculty ID
+     * 
+     * @param facultyId
+     * @return
+     */
+    public List<Department> getDepartmentsByFacultyId(Long facultyId) {
+        return departmentRepository.findByFacultyFacultyId(facultyId);
+    }
+
 }

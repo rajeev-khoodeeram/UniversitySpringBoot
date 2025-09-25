@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import ca.cloudace.backend.service.DepartmentService;
 
 @RestController
 @RequestMapping("/api/courses")
+@CrossOrigin(origins = "http://localhost:4200") // Adjust the origin as needed
 public class CourseController {
 
     private final CourseService courseService;
@@ -127,6 +129,14 @@ public class CourseController {
             return updatedCourse;
 
         }
+    }
+
+    // CONTROLLER --> SERVICES --> REPOSITORY --> DATABASE !!
+
+    @GetMapping("/dept/{departmentId}")
+    public List<Course> getCoursesByDepartmentId(@PathVariable Long departmentId) {
+        System.out.println("Fetching courses for department ID: " + departmentId);
+        return courseService.findCoursesByDepartmentId(departmentId);
     }
 
 }
