@@ -9,14 +9,17 @@ import org.springframework.stereotype.Service;
 import ca.cloudace.backend.controller.CourseDTO;
 import ca.cloudace.backend.model.Course;
 import ca.cloudace.backend.repository.CourseRepository;
+import ca.cloudace.backend.repository.DepartmentRepository;
 
 @Service
 public class CourseService {
 
     private final CourseRepository courseRepository;
+    private final DepartmentRepository departmentRepository;
 
-    public CourseService(CourseRepository courseRepository) {
+    public CourseService(CourseRepository courseRepository, DepartmentRepository departmentRepository) {
         this.courseRepository = courseRepository;
+        this.departmentRepository = departmentRepository;
     }
 
     // Add service methods as needed
@@ -105,18 +108,8 @@ public class CourseService {
         return courseRepository.count(); // is catered by JpaRepository automatically for us !!
     }
 
-    /*
-     * public List<Course> findCoursesByDepartmentId(Long departmentId) {
-     * return courseRepository.findByDepartment(departmentId);
-     * }
-     * public List<Course> findCoursesByCoordinatorId(Long coordinatorId) {
-     * return courseRepository.findByCoordinator(coordinatorId);
-     * }
-     * public List<Course> findCoursesByInstructorId(Long instructorId) {
-     * return courseRepository.findByInstructors(instructorId);
-     * }
-     * public List<Course> findCoursesByStudentId(Long studentId) {
-     * return courseRepository.findByStudents(studentId);
-     * }
-     */
+    public List<Course> findCoursesByDepartmentId(Long departmentId) {
+        return courseRepository.findByDepartment(departmentRepository.findById(departmentId).orElse(null));
+    }
+
 }

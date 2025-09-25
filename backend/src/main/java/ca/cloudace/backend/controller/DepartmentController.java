@@ -23,11 +23,8 @@ import ca.cloudace.backend.repository.FacultyRepository;
 import ca.cloudace.backend.repository.LecturerRepository;
 import ca.cloudace.backend.service.DepartmentService;
 
-
-
-
 @RestController
-@RequestMapping("/api/departments") 
+@RequestMapping("/api/departments")
 @CrossOrigin(origins = "http://localhost:4200")
 public class DepartmentController {
 
@@ -42,7 +39,6 @@ public class DepartmentController {
 
     @Autowired
     private DepartmentRepository departmentRepository;
-   
 
     // Controller methods will go here
     @GetMapping
@@ -59,37 +55,36 @@ public class DepartmentController {
 
     /**
      * Create a new department.
+     * 
      * @param department
      * @return
      */
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, 
-    produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Department> createDepartment(@RequestBody DepartmentDTO dto) {
-        //print the DTO for testing purposes
+        // print the DTO for testing purposes
         System.out.println("Received Department DTO: " + dto);
 
         Department dept = new Department();
         dept.setDepartmentName(dto.getDepartmentName());
         dept.setDepartmentCode(dto.getDepartmentCode());
 
-        //now we load faculty
+        // now we load faculty
         Faculty faculty = facultyRepository.findById(dto.getFacultyId())
                 .orElseThrow(() -> new RuntimeException("Faculty not found with id: " + dto.getFacultyId()));
         dept.setFaculty(faculty);
 
-        //now we load the lecturer
+        // now we load the lecturer
         Lecturer lecturer = lecturerRepository.findById(dto.getLecturerId())
                 .orElseThrow(() -> new RuntimeException("Lecturer not found with id: " + dto.getLecturerId()));
         dept.setHeadOfDepartment(lecturer);
-
 
         Department createdDepartment = departmentService.saveDepartment(dept);
         return ResponseEntity.status(201).body(createdDepartment);
     }
 
-
     /**
      * Delete a department by its ID.
+     * 
      * @param departmentId
      * @return
      */
@@ -101,19 +96,20 @@ public class DepartmentController {
 
     /**
      * Update an existing department.
+     * 
      * @param id
      * @param dto
      * @return
      */
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path="/{id}")
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, path = "/{id}")
     public ResponseEntity<Department> updateDepartment(@PathVariable Long id, @RequestBody DepartmentDTO dto) {
         System.out.println("Received update for ID: " + id + " with entity: " + dto);
 
         Department existingDepartment = departmentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Department not found with id: " + id));
-        
+
         existingDepartment.setDepartmentName(dto.getDepartmentName());
-        existingDepartment.setDepartmentCode(dto.getDepartmentCode());  
+        existingDepartment.setDepartmentCode(dto.getDepartmentCode());
 
         Faculty faculty = facultyRepository.findById(dto.getFacultyId())
                 .orElseThrow(() -> new RuntimeException("Faculty not found with id: " + dto.getFacultyId()));
@@ -121,12 +117,25 @@ public class DepartmentController {
         existingDepartment.setFaculty(faculty);
 
         Lecturer lecturer = lecturerRepository.findById(dto.getLecturerId())
-                .orElseThrow(() -> new RuntimeException("Lecturer not found with id: " + dto.getLecturerId())); 
+                .orElseThrow(() -> new RuntimeException("Lecturer not found with id: " + dto.getLecturerId()));
         existingDepartment.setHeadOfDepartment(lecturer);
 
         Department updatedDepartment = departmentService.updateDepartment(id, existingDepartment);
         return ResponseEntity.ok(updatedDepartment);
     }
 
+    /**
+     * Get list of departments by faculty ID.
+     * Used in the frontend (FacultyDetailsComponent) to show the list of
+     * departments
+     * 
+     * @param facultyId
+     * @return
+     */
+    @GetMapping("/faculty/{facultyId}")
+    public ResponseEntity<List<Department>> getListOfDepartmentsByFacultyId(@PathVariable Long facultyId) {
+        List<Department> departments = departmentService.getDepartmentsByFacultyId(facultyId);
+        return ResponseEntity.ok(departments);
+    }
 
 }
