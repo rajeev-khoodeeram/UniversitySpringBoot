@@ -7,7 +7,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
 import { AppFloatingConfigurator } from '../../layout/component/app.floatingconfigurator';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 @Component({
     selector: 'app-login',
     standalone: true,
@@ -54,7 +55,7 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
                                 </div>
                                 <span class="font-medium no-underline ml-2 text-right cursor-pointer text-primary">Forgot password?</span>
                             </div>
-                            <p-button label="Sign In" styleClass="w-full" routerLink="/"></p-button>
+                            <p-button label="Sign In" styleClass="w-full"  (click)="login()"></p-button>
                         </div>
                     </div>
                 </div>
@@ -62,10 +63,28 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
         </div>
     `
 })
+  
 export class Login {
     email: string = '';
 
     password: string = '';
 
     checked: boolean = false;
+
+    constructor(private auth: AuthService, private router: Router) {}
+      
+    login() {
+      this.auth.login({ username: this.email, password: this.password }).subscribe({
+        next: (res: any) => {
+          this.auth.saveToken(res.token);
+          this.router.navigate(['/']);
+        },
+        error: (err) => {
+          console.error('Login failed', err);
+          // Handle login error (e.g., show a message to the user)
+        }
+      });
+    }
+
+    
 }

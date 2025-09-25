@@ -1,0 +1,36 @@
+<div class="container">
+  <!-- Left Side: Course List -->
+  <div class="courses">
+    <h3>Courses</h3>
+    <ul>
+      <li *ngFor="let course of courses"
+          [class.active]="course === selectedCourse"
+          (click)="selectCourse(course)">
+        {{ course.courseName }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Right Side: Modules by Semester -->
+  <div class="modules" *ngIf="selectedCourse; else placeholder">
+    <h3>{{selectedCourse.courseLevel}} - {{ selectedCourse.courseName }} ({{selectedCourse.courseDuration}} years)</h3>
+    <div class="semesters">
+      <div class="semester" *ngFor="let sem of [1,2,3,4,5,6]">
+        <h4>Semester {{ sem }}</h4>
+        <ul>
+          <li *ngFor="let module of getModulesBySemester(sem)" style="margin-bottom: 5px;">
+            {{ module.moduleName }} ({{ module.moduleCode }}) - <span style="font-weight:bold; color:darkgreen">{{ module.moduleCredits }} credits</span>
+          </li>
+          <li *ngIf="getModulesBySemester(sem).length === 0">No modules</li>
+        </ul>
+      </div>
+    </div>
+    <div class="enroll"  style="margin-top: 20px; font-size: 1.1em; font-weight: bold; color: rgb(194, 221, 186); background: #145306; padding: 10px; border-radius: 8px; text-align: center;">
+      <a [routerLink]="['/course', selectedCourse.courseId]">Enrol in this course >></a>
+    </div>
+  </div>
+
+  <ng-template #placeholder>
+    <div class="placeholder">Select a course to view modules</div>
+  </ng-template>
+</div>
